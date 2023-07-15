@@ -1,0 +1,17 @@
+<section class="paradas">
+    <app-label texto="Paradas" />
+    <div class="checkbox-group">
+        <p *ngFor="let opcao of opcoes" >
+            <mat-checkbox 
+                color="primary"
+                [value]="opcao.value"
+                (change)="alternarParada(opcao, $event.checked)"
+                [checked]="paradaSelecionada(opcao)"
+                [indeterminate]="paradaInclusa(opcao)"
+                [disabled]="paradaInclusa(opcao)"
+            >
+                {{opcao.display}}
+            </mat-checkbox>
+        </p>
+    </div>
+</section>

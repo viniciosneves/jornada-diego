@@ -26,6 +26,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ModalComponent } from './shared/modal/modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { BotaoControleComponent } from './shared/botao-controle/botao-controle.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -35,6 +38,13 @@ import { DropdownUfComponent } from './shared/form-busca/dropdown-uf/dropdown-uf
 import { SeletorPassageiroComponent } from './shared/seletor-passageiro/seletor-passageiro.component';
 import { DepoimentosComponent } from './pages/home/depoimentos/depoimentos.component';
 import { BuscaComponent } from './pages/busca/busca.component';
+import { FiltrosComplementaresComponent } from './shared/form-busca/filtros-complementares/filtros-complementares.component';
+import { ParadasComponent } from './shared/form-busca/filtros-complementares/paradas/paradas.component';
+import { CompanhiasComponent } from './shared/form-busca/filtros-complementares/companhias/companhias.component';
+import { LabelComponent } from './shared/form-busca/filtros-complementares/label/label.component';
+import { PrecosComponent } from './shared/form-busca/filtros-complementares/precos/precos.component';
+import { PassagemComponent } from './shared/passagem/passagem.component';
+import { PassagemDestaqueComponent } from './shared/passagem-destaque/passagem-destaque.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +64,14 @@ import { BuscaComponent } from './pages/busca/busca.component';
     DropdownUfComponent,
     SeletorPassageiroComponent,
     DepoimentosComponent,
-    BuscaComponent
+    BuscaComponent,
+    FiltrosComplementaresComponent,
+    ParadasComponent,
+    CompanhiasComponent,
+    LabelComponent,
+    PrecosComponent,
+    PassagemComponent,
+    PassagemDestaqueComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +90,10 @@ import { BuscaComponent } from './pages/busca/busca.component';
     MatDialogModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatCheckboxModule,
+    MatSliderModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

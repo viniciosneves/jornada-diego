@@ -1,3 +1,25 @@
-<app-container>
-    <app-form-busca (realizarBusca)="obterPassagens($event)"></app-form-busca>
-</app-container>
+<div class="busca-page">
+    <app-banner src="assets/imagens/banner-busca.png" alt="" />
+    <app-container>x
+        <app-form-busca (realizarBusca)="obterPassagens($event)" />
+        <section class="conteudo">
+            <aside class="filtros-adicionais">
+                <app-filtros-complementares (realizarBusca)="obterPassagens($event)"/>
+            </aside>
+            <div class="passagens">
+                <div class="destaques">
+                    <app-card variant="secondary">
+                        <app-passagem-destaque destacadaPor="Menor preço" [passagem]="destaques?.maisBarata"/>
+                    </app-card>
+                    <app-card variant="default">
+                        <app-passagem-destaque destacadaPor="Recomendado" [passagem]="destaques?.sugerida"/>
+                    </app-card>
+                    <app-card>
+                        <app-passagem-destaque destacadaPor="Menor tempo" [passagem]="destaques?.maisRapida"/>
+                    </app-card>
+                </div>
+                <app-passagem  *ngFor="let passagem of passagens" [passagem]="passagem"/>
+            </div>
+        </section>
+    </app-container>
+</div>

@@ -32,14 +32,51 @@ export interface FiltroPassagem {
     tempoVoo?: number;
     dataIda: string;
     dataVolta?: string;
+    companhiasId?: number[];
     pagina: number;
     porPagina: number;
 }
 
 export interface Resultado {
-    paginaAtual:  number;
+    paginaAtual: number;
     ultimaPagina: number;
-    total:        number;
-    resultado:    any[];
-  }
-  
+    precoMin: number;
+    precoMax: number;
+    total: number;
+    resultado: Passagem[];
+}
+
+export interface Companhia {
+    id: string,
+    nome: string
+}
+
+export interface Orcamento {
+    descricao: string;
+    preco: number;
+    taxaEmbarque: number;
+    total: number;  
+}
+
+export interface Passagem {
+    tipo: string
+    precoIda: number
+    precoVolta: number
+    taxaEmbarque: number
+    conexoes: number
+    tempoVoo: number
+    origem: UnidadeFederativa
+    destino: UnidadeFederativa
+    companhia: Companhia
+    dataIda: Date
+    dataVolta: Date
+    total: number
+    orcamento: Orcamento[]
+
+}
+
+export interface Destaques {
+    maisRapida: Passagem
+    maisBarata: Passagem
+    sugerida: Passagem
+}

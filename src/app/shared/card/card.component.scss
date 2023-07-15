@@ -2,11 +2,14 @@
   padding: 24px;
   &.primary {
     background: #FEF7FF;
-    border: 1px solid #CAC4D0;
-    border-radius: 12px;
+    border-radius: 16px;
   }
   &.secondary {
     background: #F5F5F5;
+    border-radius: 16px;
+  }
+  &.default {
+    background: #ECE6F0;
     border-radius: 16px;
   }
 }

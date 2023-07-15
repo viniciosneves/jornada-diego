@@ -24,7 +24,11 @@ export class FormBuscaService {
       criancas: new FormControl(0),
       bebes: new FormControl(1),
       dataIda: new FormControl(null, [Validators.required]),
-      dataVolta
+      dataVolta,
+      conexoes: new FormControl(null),
+      companhias: new FormControl(null),
+      precoMin: new FormControl(210),
+      precoMax: new FormControl(490),
     })
     somenteIda.valueChanges.subscribe((somenteIda) => {
       if (somenteIda) {
@@ -105,10 +109,27 @@ export class FormBuscaService {
       origemId: this.obterControle<UnidadeFederativa>('origem').value.id,
       destinoId: this.obterControle<UnidadeFederativa>('destino').value.id,
       tipo: this.obterControle<string>('tipo').value,
+  
     }
     const dataVoltaControl = this.obterControle<Date>('dataVolta');
     if (dataVoltaControl.value) {
       filtro.dataVolta = dataVoltaControl.value.toISOString()
+    }
+    const conexoesControl = this.obterControle<number>('conexoes');
+    if (conexoesControl.value) {
+      filtro.conexoes = conexoesControl.value
+    }
+    const companhiasControl = this.obterControle<number[]>('companhias');
+    if (companhiasControl.value && companhiasControl.value.length) {
+      filtro.companhiasId = companhiasControl.value
+    }
+    const precoMinControl = this.obterControle<number>('precoMin');
+    if (precoMinControl.value) {
+      filtro.precoMin = precoMinControl.value
+    }
+    const precoMaxControl = this.obterControle<number>('precoMax');
+    if (precoMaxControl.value) {
+      filtro.precoMax = precoMaxControl.value
     }
     return filtro;
   }
@@ -116,4 +137,5 @@ export class FormBuscaService {
   get filtroEstaValido()  {
     return this.formBusca.valid
   }
+  
 }
