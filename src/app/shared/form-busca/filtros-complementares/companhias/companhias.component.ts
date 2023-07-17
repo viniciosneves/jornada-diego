@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { CompanhiaService } from 'src/app/core/services/companhia.service';
 import { FormBuscaService } from 'src/app/core/services/form-busca.service';
 import { Companhia } from 'src/app/core/types/type';
@@ -11,8 +12,15 @@ import { Companhia } from 'src/app/core/types/type';
 export class CompanhiasComponent implements OnInit {
   companhias: Companhia[] = [];
   selecionadas: Companhia[] = [];
-  constructor(private companhiaService: CompanhiaService,
-    private formBuscaService: FormBuscaService) {
+
+  companhiasControl: FormControl<number[] | null>
+
+  constructor(
+    private companhiaService: CompanhiaService,
+    private formBuscaService: FormBuscaService
+  ) {
+
+    this.companhiasControl = this.formBuscaService.obterControle<number[] | null>('companhias')
 
   }
   ngOnInit(): void {
@@ -21,6 +29,11 @@ export class CompanhiasComponent implements OnInit {
         this.companhias = res;
       }
     )
+    this.companhiasControl.valueChanges.subscribe(value => {
+      if (!value) {
+        this.selecionadas = []
+      }
+    })
   }
 
   alternarCompanhia(companhia: Companhia, checked: boolean): void {

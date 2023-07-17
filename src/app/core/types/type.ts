@@ -26,12 +26,12 @@ export interface FiltroPassagem {
     tipo?: string;
     origemId?: number;
     destinoId?: number;
+    dataIda: string;
+    dataVolta?: string;
     precoMin?: number;
     precoMax?: number;
     conexoes?: number;
     tempoVoo?: number;
-    dataIda: string;
-    dataVolta?: string;
     companhiasId?: number[];
     pagina: number;
     porPagina: number;

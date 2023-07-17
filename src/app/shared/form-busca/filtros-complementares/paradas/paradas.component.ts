@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { FormBuscaService } from 'src/app/core/services/form-busca.service';
 
 interface OpcaoDeParada {
@@ -11,9 +12,9 @@ interface OpcaoDeParada {
   templateUrl: './paradas.component.html',
   styleUrls: ['./paradas.component.scss']
 })
-export class ParadasComponent {
+export class ParadasComponent implements OnInit {
 
-  selecionada?: OpcaoDeParada
+  selecionada: OpcaoDeParada | null = null
 
   opcoes: OpcaoDeParada[] = [
     {
@@ -33,26 +34,39 @@ export class ParadasComponent {
       value: "3"
     },
   ]
+  conexoesControl: FormControl<number | null>
 
-  constructor(
-    private formBuscaService: FormBuscaService) { }
+  constructor(private formBuscaService: FormBuscaService) {
+
+    this.conexoesControl = this.formBuscaService.obterControle<number | null>('conexoes')
+
+  }
+
+  ngOnInit(): void {
+
+    this.conexoesControl.valueChanges.subscribe(value => {
+      if (!value) {
+        this.selecionada = null
+      }
+    })
+  }
 
   alternarParada(opcao: OpcaoDeParada, checked: boolean): void {
     if (!checked) {
-      this.selecionada = undefined
+      this.selecionada = null
       this.formBuscaService.formBusca.patchValue({
         conexoes: null
       })
       return
     }
-    this.selecionada = opcao  
+    this.selecionada = opcao
     this.formBuscaService.formBusca.patchValue({
       conexoes: Number(opcao.value)
     })
   }
 
   paradaSelecionada(opcao: OpcaoDeParada): boolean {
-    return this.selecionada == opcao
+    return this.selecionada === opcao
   }
 
   paradaInclusa(opcao: OpcaoDeParada): boolean {
@@ -62,5 +76,5 @@ export class ParadasComponent {
     return this.selecionada.value > opcao.value
   }
 
-  
+
 }
